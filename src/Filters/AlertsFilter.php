@@ -39,7 +39,7 @@ class AlertsFilter implements FilterInterface
 
         /** @var IncomingRequest $request */
         if ($request->is('htmx')) {
-            $body = (string) $response->getBody();
+            $body         = (string) $response->getBody();
             $alertsConfig = config('Alerts');
             if (alerts()->hasAlerts() && str_contains($body, sprintf('id="%s"', $alertsConfig->htmlWrapperId))) {
                 $dom = new DOMDocument();
