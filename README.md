@@ -40,6 +40,10 @@ Array keys are also used to determine the type of the alert we want to set, ie:
 alerts()->set('success', 'Success message goes here.');
 ```
 
+#### $htmlWrapperId
+
+Wrapper `id` name, used in the view file.
+
 #### $views
 
 View files used by this library. You can change them to reflect the current style/theme you're using.

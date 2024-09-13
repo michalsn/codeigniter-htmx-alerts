@@ -27,7 +27,7 @@ class Alerts extends BaseConfig
     ];
 
     /**
-     * Wrapper ID used in the view file.
+     * Wrapper 'id' name, used in the view file.
      */
     public string $htmlWrapperId = 'alerts-wrapper';
 
