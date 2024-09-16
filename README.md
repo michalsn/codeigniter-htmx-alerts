@@ -22,9 +22,9 @@ You have to publish the config file first:
 
 Now you can change:
 
-#### $alertsKey
+#### $key
 
-Alerts variable key used in views and session.
+Alerts key name used in views and session.
 
 #### $displayTime
 

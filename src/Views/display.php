@@ -1,6 +1,6 @@
 <?php foreach ($alerts as $type => $messages): ?>
     <?php foreach ($messages as $message): ?>
-        <div x-data="{ show: true }" x-show="show" x-init="setTimeout(() => show = false, <?= $message['seconds']; ?>)" class="toast show mt-1" role="alert" aria-live="assertive" aria-atomic="true">
+        <div x-data="{ show: true }" x-show="show" x-init="setTimeout(() => show = false, <?= $message['displayTime']; ?>)" class="toast show mt-1" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="toast-header">
                 <span class="bg-<?= esc($type, 'attr'); ?> avatar avatar-xs me-2"></span>
                 <strong class="me-auto"><?= setting('Alerts.types')[$type] ?? ''; ?></strong>

@@ -11,7 +11,7 @@
             "role": "Developer"
         }
     ],
-    "homepage": "https://github.com/michalsn/codeigniter-vite",
+    "homepage": "https://github.com/michalsn/codeigniter-htmx-alerts",
     "require": {
         "php": "^8.1",
         "codeigniter4/settings": "^2.2.0",

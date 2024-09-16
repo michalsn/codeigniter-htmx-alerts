@@ -1,3 +1,3 @@
-<div hx-swap-oob="beforeend:#alerts-wrapper">
+<div hx-swap-oob="beforeend:#<?= setting('Alerts.htmlWrapperId'); ?>">
     <?= view(setting('Alerts.views')['display'], $alerts); ?>
 </div>

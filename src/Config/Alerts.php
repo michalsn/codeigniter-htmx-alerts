@@ -11,7 +11,7 @@ class Alerts extends BaseConfig
     /**
      * Alerts key used in views and session.
      */
-    public string $alertsKey = 'alerts';
+    public string $key = 'alerts';
 
     /**
      * The default alert display time in milliseconds.

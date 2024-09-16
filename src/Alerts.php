@@ -16,17 +16,18 @@ class Alerts
     }
 
     /**
-     * Set alert type and message
+     * Set alert type and message,
+     * optionally display time in milliseconds.
      */
-    public function set(string $type, string $message, ?int $seconds = null): static
+    public function set(string $type, string $message, ?int $displayTime = null): static
     {
         if (! isset($this->data[$type])) {
             $this->data[$type] = [];
         }
 
         $this->data[$type][] = [
-            'message' => $message,
-            'seconds' => $seconds ?? $this->config->displayTime,
+            'message'     => $message,
+            'displayTime' => $displayTime ?? $this->config->displayTime,
         ];
 
         return $this;
@@ -61,7 +62,7 @@ class Alerts
     /**
      * Check if we have any alerts.
      */
-    public function hasAlerts(): bool
+    public function has(): bool
     {
         return $this->data !== [];
     }
@@ -71,8 +72,8 @@ class Alerts
      */
     public function display(): string
     {
-        if ($this->hasAlerts()) {
-            return view($this->config->views['display'], [$this->config->alertsKey => $this->data]);
+        if ($this->has()) {
+            return view($this->config->views['display'], [$this->config->key => $this->data]);
         }
 
         return '';
@@ -83,8 +84,8 @@ class Alerts
      */
     public function inline(): string
     {
-        if ($this->hasAlerts()) {
-            return view($this->config->views['inline'], [$this->config->alertsKey => $this->data]);
+        if ($this->has()) {
+            return view($this->config->views['inline'], [$this->config->key => $this->data]);
         }
 
         return '';
@@ -95,8 +96,8 @@ class Alerts
      */
     public function session(): void
     {
-        if ($this->hasAlerts()) {
-            $this->session->setFlashdata($this->config->alertsKey, $this->data);
+        if ($this->has()) {
+            $this->session->setFlashdata($this->config->key, $this->data);
         }
     }
 
