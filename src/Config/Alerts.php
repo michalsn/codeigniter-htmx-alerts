@@ -20,6 +20,8 @@ class Alerts extends BaseConfig
 
     /**
      * Types of messages (css class => alert title)
+     *
+     * @var array<string, string>
      */
     public array $types = [
         'success' => 'Success',
@@ -33,6 +35,8 @@ class Alerts extends BaseConfig
 
     /**
      * View files.
+     *
+     * @var array<string, string>
      */
     public array $views = [
         'container' => '\Michalsn\CodeIgniterHtmxAlerts\Views\container',
