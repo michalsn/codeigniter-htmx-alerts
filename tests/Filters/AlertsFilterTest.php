@@ -28,7 +28,6 @@ final class AlertsFilterTest extends TestCase
         </html>
         EOD;
 
-
     protected function setUp(): void
     {
         parent::setUp();
