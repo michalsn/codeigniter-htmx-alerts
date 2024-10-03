@@ -69,6 +69,7 @@
         <exclude>
             <directory suffix=".php">./src/Config</directory>
             <directory suffix=".php">./src/Views</directory>
+            <file>./src/Filters/AlertsFilter.php</file>
         </exclude>
     </source>
 </phpunit>

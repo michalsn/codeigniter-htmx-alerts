@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Michalsn\CodeIgniterHtmxAlerts\Filters;
 
 use CodeIgniter\Filters\FilterInterface;
