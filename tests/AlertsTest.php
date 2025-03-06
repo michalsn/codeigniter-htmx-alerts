@@ -123,7 +123,7 @@ final class AlertsTest extends CIUnitTestCase
                         'displayTime' => 5000,
                     ],
                 ],
-            ]
+            ],
         );
 
         $data = $alerts->get();
@@ -160,7 +160,7 @@ final class AlertsTest extends CIUnitTestCase
                         'displayTime' => 5000,
                     ],
                 ],
-            ]
+            ],
         );
 
         $data = $alerts->get('success');
@@ -192,7 +192,7 @@ final class AlertsTest extends CIUnitTestCase
                         'displayTime' => 5000,
                     ],
                 ],
-            ]
+            ],
         );
 
         $data = $alerts->clear()->get();
@@ -219,7 +219,7 @@ final class AlertsTest extends CIUnitTestCase
                         'displayTime' => 5000,
                     ],
                 ],
-            ]
+            ],
         );
 
         $data = $alerts->clear('danger')->get();
@@ -282,7 +282,7 @@ final class AlertsTest extends CIUnitTestCase
         $alerts->set('success', 'success message')->session();
         $this->assertSame(
             ['success' => [['message' => 'success message', 'displayTime' => 5000]]],
-            service('session')->getFlashdata('alerts')
+            service('session')->getFlashdata('alerts'),
         );
     }
 
