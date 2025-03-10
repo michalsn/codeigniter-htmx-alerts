@@ -1,3 +1,5 @@
+includes:
+    - phpstan-baseline.neon
 parameters:
 	tmpDir: build/phpstan
 	level: 5
@@ -7,7 +9,6 @@ parameters:
 	bootstrapFiles:
 		- vendor/codeigniter4/framework/system/Test/bootstrap.php
 	excludePaths:
-		- src/Debug/Toolbar.php
 		- src/Views/*
 	ignoreErrors:
 	universalObjectCratesClasses:
