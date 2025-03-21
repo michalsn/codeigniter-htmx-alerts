@@ -78,6 +78,25 @@ alerts()->set('danger', 'Error message');
 // custom display time - 1 sec (in milliseconds)
 alerts()->set('success', 'Message', 1000);
 ```
+#### Custom Alert Title
+
+With the new method `withTitle()`, you can set a custom title for your alerts.
+
+```php
+// success alert with a custom title
+alerts()->withTitle('Custom Title')->set('success', 'Success message');
+// error alert with a custom title
+alerts()->withTitle('Oops!')->set('danger', 'Error message');
+
+```
+
+You can also configure whether the Custom Alert Title should be reset after each `set()` call by passing a second parameter:
+
+```php
+// success alert with a custom title that will not reset after each set
+alerts()->withTitle('Custom Title', false)->set('success', 'Success Message One');
+alerts()->set('success', 'Success Message Two');
+```
 
 #### Removing alerts
 
