@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace Tests;
 
-use CodeIgniter\Test\CIUnitTestCase;
 use CodeIgniter\Test\DatabaseTestTrait;
 use Michalsn\CodeIgniterHtmxAlerts\Alerts;
 use Michalsn\CodeIgniterHtmxAlerts\Config\Alerts as AlertsConfig;
+use Tests\Support\TestCase;
 
 /**
  * @internal
  */
-final class AlertsTest extends CIUnitTestCase
+final class AlertsTest extends TestCase
 {
     use DatabaseTestTrait;
 
@@ -247,7 +247,6 @@ final class AlertsTest extends CIUnitTestCase
 
     public function testDisplayAlerts(): void
     {
-        helper('setting');
         $alerts = $this->alertsInstance();
         $output = $alerts->set('success', 'success message')->display();
         $this->assertStringContainsString('toast-header', $output);
@@ -262,7 +261,6 @@ final class AlertsTest extends CIUnitTestCase
 
     public function testInlineAlerts(): void
     {
-        helper('setting');
         $alerts = $this->alertsInstance();
         $output = $alerts->set('success', 'success message')->inline();
         $this->assertStringContainsString('hx-swap-oob="beforeend:#alerts-wrapper"', $output);
@@ -277,11 +275,10 @@ final class AlertsTest extends CIUnitTestCase
 
     public function testSessionAlerts(): void
     {
-        helper('setting');
         $alerts = $this->alertsInstance();
         $alerts->set('success', 'success message')->session();
         $this->assertSame(
-            ['success' => [['message' => 'success message', 'displayTime' => 5000]]],
+            ['success' => [['title' => 'Success', 'message' => 'success message', 'displayTime' => 5000]]],
             service('session')->getFlashdata('alerts'),
         );
     }
@@ -291,6 +288,43 @@ final class AlertsTest extends CIUnitTestCase
         $alerts = $this->alertsInstance();
         $alerts->session();
         $this->assertNull(service('session')->getFlashdata('alerts'));
+    }
+
+    public function testWithTitleSetsTitleForNextAlertOnly()
+    {
+        $alerts = $this->alertsInstance();
+        $alerts->withTitle('Important Error')->set('error', 'An error occurred while processing your request.');
+
+        $alerts = $alerts->get('error');
+
+        $this->assertCount(1, $alerts);
+        $this->assertSame('Important Error', $alerts[0]['title']);
+    }
+
+    public function testWithTitleCanPersistTitleForMultipleAlerts()
+    {
+        $alerts = $this->alertsInstance();
+        $alerts->withTitle('General Warning', false);
+        $alerts->set('success', 'Your capacity is running low.');
+        $alerts->set('error', 'You have a new message.');
+
+        $successAlerts = $alerts->get('success');
+        $errorAlerts   = $alerts->get('error');
+
+        $this->assertSame('General Warning', $successAlerts[0]['title']);
+        $this->assertSame('General Warning', $errorAlerts[0]['title']);
+    }
+
+    public function testWithTitleTitleDoesNotPersistAfterSetByDefault()
+    {
+        $alerts = $this->alertsInstance();
+        $alerts->withTitle('Important Error')->set('error', 'An error occurred while processing your request.');
+        $alerts->set('success', 'Operation completed successfully.');
+
+        $errorAlerts   = $alerts->get('error');
+        $successAlerts = $alerts->get('success');
+        $this->assertSame('Important Error', $errorAlerts[0]['title']);
+        $this->assertSame('Success', $successAlerts[0]['title']);
     }
 
     public function testContainer(): void

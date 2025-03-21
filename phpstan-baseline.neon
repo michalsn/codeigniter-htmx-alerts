@@ -1,7 +1,12 @@
 parameters:
-	ignoreErrors:
-		-
-			message: '#^Call to method PHPUnit\\Framework\\Assert\:\:assertInstanceOf\(\) with ''Michalsn\\\\CodeIgniterHtmxAlerts\\\\Alerts'' and Michalsn\\CodeIgniterHtmxAlerts\\Alerts will always evaluate to true\.$#'
-			identifier: method.alreadyNarrowedType
-			count: 1
-			path: tests/AlertsTest.php
+  ignoreErrors:
+      - message: '#^Call to method PHPUnit\\Framework\\Assert\:\:assertInstanceOf\(\) with ''Michalsn\\\\CodeIgniterHtmxAlerts\\\\Alerts'' and Michalsn\\CodeIgniterHtmxAlerts\\Alerts will always evaluate to true\.$#'
+        identifier: method.alreadyNarrowedType
+        count: 1
+        path: tests/AlertsTest.php
+
+      - message: '#^Call to method PHPUnit\\Framework\\Assert\:\:assertInstanceOf\(\) with ''Michalsn\\\\CodeIgniterHtmxAlerts\\\\Alerts'' and Michalsn\\CodeIgniterHtmxAlerts\\Alerts will always evaluate to true\.$#'
+        identifier: method.alreadyNarrowedType
+        count: 1
+        path: tests/CommonTest.php
+
