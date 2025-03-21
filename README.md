@@ -58,6 +58,12 @@ In your main layout place the code (usually it will be just before the closing `
 <?= alerts()->container(); ?>
 ```
 
+Don't forget to include these scripts in your main layout for proper functionality:
+```html
+<script src="https://unpkg.com/htmx.org@2.0.4"></script>
+<script src="//unpkg.com/alpinejs" defer></script>
+```
+
 That's it. You're ready to go. No matter if this is a `htmx` request or traditional one, your alerts will be placed correctly every time.
 
 #### Adding alerts
