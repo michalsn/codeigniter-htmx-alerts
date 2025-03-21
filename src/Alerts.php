@@ -38,9 +38,14 @@ class Alerts
         }
 
         $this->data[$type][] = [
+            'title'       => $this->currentTitle,
             'message'     => $message,
             'displayTime' => $displayTime ?? $this->config->displayTime,
         ];
+
+        if ($this->resetTitleAfterSet) {
+            $this->currentTitle = null;
+        }
 
         return $this;
     }
