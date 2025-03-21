@@ -38,7 +38,7 @@ class Alerts
         }
 
         $this->data[$type][] = [
-            'title'       => $this->currentTitle,
+            'title'       => $this->currentTitle ?? setting('Alerts.types')[$type],
             'message'     => $message,
             'displayTime' => $displayTime ?? $this->config->displayTime,
         ];
