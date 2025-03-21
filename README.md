@@ -12,7 +12,7 @@ A simple Alerts class integrated with [htmx](https://htmx.org) and [Alpine.js](h
 
 ## Installation
 
-    composer require michalsn/codeigniter-htmx-alerts
+    composer require michalsn/codeigniter-htmx-alerts:dev-develop
 
 ## Configuration
 
