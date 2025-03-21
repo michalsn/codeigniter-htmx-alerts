@@ -11,6 +11,18 @@ class Alerts
 {
     protected array $data = [];
 
+    /**
+     * The current custom title for alerts.
+     * If set to null, the default title will be used.
+     */
+    protected ?string $currentTitle = null;
+
+    /**
+     * Determines whether the title should be reset after each `set()` call.
+     * If set to `true`, the title will be cleared after every `set()`.
+     */
+    protected bool $resetTitleAfterSet = true;
+
     public function __construct(protected AlertsConfig $config, protected Session $session)
     {
     }
@@ -43,6 +55,21 @@ class Alerts
         }
 
         return $this->data[$type] ?? [];
+    }
+
+    /**
+     * Sets a custom title for upcoming alerts.
+     *
+     * @param string $title              The custom title for the alert.
+     * @param bool   $resetTitleAfterSet Determines whether the title should be reset after each `set()` call.
+     *                                   Defaults to `true`, meaning the title will be reset after `set()`.
+     */
+    public function withTitle(string $title, bool $resetTitleAfterSet = true): static
+    {
+        $this->currentTitle       = $title;
+        $this->resetTitleAfterSet = $resetTitleAfterSet;
+
+        return $this;
     }
 
     /**
