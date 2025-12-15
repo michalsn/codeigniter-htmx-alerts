@@ -34,13 +34,11 @@ use Rector\Php55\Rector\String_\StringClassNameToClassConstantRector;
 use Rector\Php73\Rector\FuncCall\StringifyStrNeedlesRector;
 use Rector\PHPUnit\AnnotationsToAttributes\Rector\Class_\AnnotationWithValueToAttributeRector;
 use Rector\PHPUnit\CodeQuality\Rector\Class_\YieldDataProviderRector;
-use Rector\PHPUnit\CodeQuality\Rector\MethodCall\AssertCountWithZeroToAssertEmptyRector;
 use Rector\PHPUnit\Set\PHPUnitSetList;
 use Rector\Privatization\Rector\Property\PrivatizeFinalClassPropertyRector;
 use Rector\Set\ValueObject\LevelSetList;
 use Rector\Set\ValueObject\SetList;
 use Rector\Strict\Rector\Empty_\DisallowedEmptyRuleFixerRector;
-use Rector\Strict\Rector\If_\BooleanInIfConditionRuleFixerRector;
 use Rector\TypeDeclaration\Rector\Empty_\EmptyOnNullableObjectToInstanceOfRector;
 use Rector\TypeDeclaration\Rector\Property\TypedPropertyFromAssignsRector;
 use Rector\ValueObject\PhpVersion;
@@ -98,9 +96,6 @@ return static function (RectorConfig $rectorConfig): void {
 
         // May load view files directly when detecting classes
         StringClassNameToClassConstantRector::class,
-
-        // Avoid empty
-        AssertCountWithZeroToAssertEmptyRector::class,
     ]);
 
     // auto import fully qualified class names
@@ -142,7 +137,6 @@ return static function (RectorConfig $rectorConfig): void {
     $rectorConfig->rule(StringClassNameToClassConstantRector::class);
     $rectorConfig->rule(PrivatizeFinalClassPropertyRector::class);
     $rectorConfig->rule(CompleteDynamicPropertiesRector::class);
-    $rectorConfig->rule(BooleanInIfConditionRuleFixerRector::class);
     $rectorConfig->rule(SingleInArrayToCompareRector::class);
     $rectorConfig->rule(VersionCompareFuncCallToConstantRector::class);
     $rectorConfig->rule(ExplicitBoolCompareRector::class);
